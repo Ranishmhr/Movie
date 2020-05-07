@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block home %}active{% endblock %}
+{% block body %}
+<h2 style="margin-top:-40px;" class="text-center">Movies</h2>
+
+<div class="row">
+    {% for a in object_list %}
+    <div class="col-md-3">
+        <div style="margin-top:10px;"
+            class='card text-black mb-2'>
+            <div class="card-header" style="background:lightblue;">{{a.title}}</div>
+            <div class="card-body" >
+                <h5 class="card-title" >{{a.rating}}</h5>
+
+                <p class="card-text text-black" >{{a.genres}}</p>
+                <a  class="btn btn-sm btn-info" href="{% url 'movies:detail' id=a.id %}">Detail</a>
+                <br>
+               
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="pagination pagination-centered">
+    <center>
+        <span class="step-links">
+            {% if object_list.has_previous %}
+            <a href="?page={{ object_list.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}
+            </span>
+
+            {% if object_list.has_next %}
+            <a href="?page={{ object_list.next_page_number }}">Next</a>
+            {% endif %}
+        </span>
+    </center>
+</div>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block recommender %}active{% endblock %}
+{% block body %}
+<h2 style="margin-top:-40px;" class="text-center">{{title}}</h2>
+<div class="row">
+{%for a in  object_list.itertuples %}
+<div class="col-md-3">
+        <div style="margin-top:10px;"
+            class='card text-black mb-3'>
+            
+            <div class="card-header" style="background:lightblue;">{{a.title}}</div>
+            <div class="card-body">
+
+                <p class="card-text text-black">{{a.genres}}</p>
+                  <a class="btn btn-sm btn-info" href="{% url 'movies:detail' id=a.movieId_id %}">Detail</a>
+
+
+             
+           
+            </div>
+        </div>
+    </div>
+
+
+{% endfor %}
+<br>
+</div>
+<style type="text/css">
+div
+{
+    display:none;
+ 
+}
+a {
+    color: #33739E;
+    text-decoration: none;
+    display: block;
+    margin: 10px 0;
+}
+a:hover {
+    text-decoration: none;
+}
+#loadMore {
+    padding: 10px;
+    text-align: center;
+    background-color: #33739E;
+    color: #fff;
+    border-width: 0 1px 1px 0;
+    border-style: solid;
+    border-color: #fff;
+    box-shadow: 0 1px 1px #ccc;
+    transition: all 600ms ease-in-out;
+    -webkit-transition: all 600ms ease-in-out;
+    -moz-transition: all 600ms ease-in-out;
+    -o-transition: all 600ms ease-in-out;
+}
+#loadMore:hover {
+    background-color: 	#DCDCDC;
+    color: #33739E;
+}
+</style>
+<a href="#" id="loadMore">Load More</a>
+<script type="text/javascript">
+
+
+$(function () {
+    $("div").slice(0, 68).show();
+    $("#loadMore").on('click', function (e) {
+        e.preventDefault();
+        $("div:hidden").slice(0, 64).slideDown();
+        if ($("div:hidden").length == 0) {
+            $("#load").fadeOut('slow');
+        }
+        $('html,body').animate({
+            scrollTop: $(this).offset().top
+        }, 1500);
+    });
+});
+
+
+
+	
+</script>
+
+{% endblock %}
