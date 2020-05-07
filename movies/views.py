@@ -261,8 +261,12 @@ def edit_review(request,review_id):
                 form=ReviewForm(request.POST,instance=review)
                 if form.is_valid():
                     data=form.save(commit=False)
-                    data.save()
-                    return redirect("movies:detail",movie_id)
+                    if (data.rating > 5) or (data.rating < 0):
+                        error="Out of range. Please select rating from 1 to 5."
+                        return render(request,'edit_review.html',{"error":error,"form":form})
+                    else:
+                        data.save()
+                        return redirect("movies:detail",movie_id)      
             else:
                 form=ReviewForm(instance=review)
             return render(request,"edit_review.html",{"form":form})
