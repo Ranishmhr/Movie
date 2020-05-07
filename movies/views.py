@@ -271,6 +271,23 @@ def edit_review(request,review_id):
     else:
         return redirect("movies:login")
 
+#delete review
+def delete_review(request,review_id):
+    if request.user.is_authenticated:
+        # movie=Movies.objects.get(id=movie_id)
+        #review
+        review=Ratings.objects.get(id=review_id)
+        movieid=review.movieid
+        movieid1=Movies.objects.get(title=movieid)
+        movie_id=movieid1.id
+        #check if the reviews by the logged in user
+        if request.user==review.userid:
+            #grant permission to dlete
+            review.delete()
+        
+        return redirect("movies:detail",movie_id)
+    else:
+        return redirect("movies:login")
 
 
 

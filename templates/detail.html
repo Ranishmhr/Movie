@@ -77,6 +77,8 @@
                                     <h5>{{review.rating}}</h5>
                                     {% if current_user == review.userid.id %}
                                     <a href="{% url 'movies:edit_review' review.id %}">Edit</a>
+                                    <a href="{% url 'movies:delete_review' review.id %}" 
+                                    onclick="return confirm('Are you sure you want to delete it?');">Delete</a>
                                     {% endif %}
 
                                 </div>

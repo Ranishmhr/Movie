@@ -17,7 +17,8 @@ urlpatterns = [
                   path('detail/<int:id>', views.detail, name='detail'),
                   path('addreview/<int:id>',add_review,name="add_review"),
                   path('search',views.search,name="search"),
-                  path('editreview/<int:review_id>',views.edit_review,name="edit_review")
+                  path('editreview/<int:review_id>',views.edit_review,name="edit_review"),
+                  path('deletereview/<int:review_id>',views.delete_review,name="delete_review"),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
