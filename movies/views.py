@@ -218,7 +218,8 @@ def detail(request,id):
     reviews=Ratings.objects.filter(movieid=id).order_by("comment")
     # results = cb.getFrames(ds)
     # content = cb.recommend(item_id=id, num=5,results=results)
-    condition=None
+    condition="false"
+    count=0
     for review in reviews:
         if request.user.id==review.userid.id:
             print("user has reviewed")
@@ -227,7 +228,9 @@ def detail(request,id):
         else:
             print("not reviewed")
             condition="false"
-            
+    print("count",count)
+    for review in reviews:
+        count=count+1
         
 
     current_user=request.user.id
@@ -236,7 +239,8 @@ def detail(request,id):
         "rating": rating,
         "reviews":reviews,
         "condition":condition,
-        "current_user":current_user
+        "current_user":current_user,
+        "count":count,
         #     "content":content,
     }
     return render(request, "detail.html", context)

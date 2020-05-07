@@ -2,16 +2,22 @@
 {% block home %}active{% endblock %}
 {% block body %}
 <h2 style="margin-top:-40px;" class="text-center">Movies</h2>
-
+<style type="text/css">
+    .chip{
+    background: #2196F3;
+    padding: 2px 15px;
+    margin: 3px;
+    border-radius: 30px;
+    color: white;
+}
+</style>
 <div class="row">
     {% for a in object_list %}
     <div class="col-md-3">
         <div style="margin-top:10px;"
             class='card text-black mb-2'>
-            <div class="card-header"  style="background:lightblue; text-overflow: ellipsis;"><div class="col-14 text-truncate">{{a.title}}</div></div>
+            <div class="card-header"  style="background:#3949abd9;color:white"><div class="col-14 text-truncate">{{a.title}}</div></div>
             <div class="card-body" >
-                <h5 class="card-title" >{{a.rating}}</h5>
-
                 <p class="card-text text-black" ><div class="col-14 text-truncate">{{a.genres}}</div></p>
                 <a  class="btn btn-sm btn-info" href="{% url 'movies:detail' id=a.id %}">Detail</a>
                 <br>

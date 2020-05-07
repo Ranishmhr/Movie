@@ -11,15 +11,17 @@
 </style>
 <div style="margin-top:-20px;"
             class='card text-black blue-gradient mb-3' style="max-width: 20rem;">
-            <div class="card-header "style="background:red; color:white">{{detail.title}}</div>
+            <div class="card-header "style="background: linear-gradient(45deg, #311b92e6, #4a5ece); color:white;padding-top:10px;margin-bottom:-7px";padding-top:3px><h5 >{{detail.title}}</h5></div>
             <div class="card-body"style="background: #f5eeee">
                 <div class="row">
-                <div class="column" style=" float: left;
+                <div class="column" style=" float: left;padding-left: 10px;
   width: 50%;">
 
-                <p class="card-text text-black">Genre: {{detail.genres}}</p>
+                <h5 class="card-text text-black">Genre: {{detail.genres}}</h5>
 
-                <p class="card-text text-black">Rating: {{rating.rating|floatformat:2}}</p>
+                <h5 class="card-text text-black">Rating: {{rating.rating|floatformat:2}}</h5>
+                <br>
+                   <h5 class="card-title" >Synopsis</h5>
  <p >{{detail.description}}</p>
             </div>
             <div class="column" style=" float: right;
@@ -49,7 +51,7 @@
 
 
                     <br>
-                    <input type="submit" class="btn btn-danger" value="Add Review">
+                    <input type="submit" class="btn btn-primary" value="Add Review">
 
                 </form>
             </div>
@@ -62,6 +64,13 @@
         </div>
         {% endif %}
         <br>
+        {% if count == 0 %}
+         <div class="card box">
+            <div class="card-body" style="background: #f5eeee">
+                <h3 class="text-center">No Reviews</h3>
+            </div>
+        </div>
+        {% else %}
         <div class="card box">
             <div class="card-body" style="background: #f5eeee">
                 <h3 class="text-center">Reviews</h3>
@@ -95,11 +104,12 @@
                  <li><br></li>
                 {% endfor %}
                 </ul>
-                <center><input id="loadMore" type="submit" class="btn btn-danger" value="Load More"></center>
-
+                {% if count > 3 %}
+                <center><input id="loadMore" type="submit" class="btn btn-primary" value="Load More"></center>
+                {% endif %}
             </div>
         </div>
-
+{% endif %}
 <style type="text/css">
     #myList li{ display:none;
 
@@ -133,6 +143,7 @@
             scrollTop: $(this).offset().top
         }, 1500);
     });
+
 });
 </script>
 
