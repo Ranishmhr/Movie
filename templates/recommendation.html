@@ -8,10 +8,10 @@
         <div style="margin-top:10px;"
             class='card text-black mb-3'>
             
-            <div class="card-header" style="background:lightblue;">{{a.title}}</div>
+            <div class="card-header" style="background:lightblue;"><div class="col-14 text-truncate">{{a.title}}</div></div>
             <div class="card-body">
 
-                <p class="card-text text-black">{{a.genres}}</p>
+                <p class="card-text text-black"><div class="col-14 text-truncate">{{a.genres}}</div></p>
                   <a class="btn btn-sm btn-info" href="{% url 'movies:detail' id=a.movieId_id %}">Detail</a>
 
 
@@ -64,10 +64,10 @@ a:hover {
 
 
 $(function () {
-    $("div").slice(0, 68).show();
+    $("div").slice(0, 76).show();
     $("#loadMore").on('click', function (e) {
         e.preventDefault();
-        $("div:hidden").slice(0, 64).slideDown();
+        $("div:hidden").slice(0, 72).slideDown();
         if ($("div:hidden").length == 0) {
             $("#load").fadeOut('slow');
         }

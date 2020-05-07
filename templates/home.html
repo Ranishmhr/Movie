@@ -8,11 +8,11 @@
     <div class="col-md-3">
         <div style="margin-top:10px;"
             class='card text-black mb-2'>
-            <div class="card-header" style="background:lightblue;">{{a.title}}</div>
+            <div class="card-header"  style="background:lightblue; text-overflow: ellipsis;"><div class="col-14 text-truncate">{{a.title}}</div></div>
             <div class="card-body" >
                 <h5 class="card-title" >{{a.rating}}</h5>
 
-                <p class="card-text text-black" >{{a.genres}}</p>
+                <p class="card-text text-black" ><div class="col-14 text-truncate">{{a.genres}}</div></p>
                 <a  class="btn btn-sm btn-info" href="{% url 'movies:detail' id=a.id %}">Detail</a>
                 <br>
                
